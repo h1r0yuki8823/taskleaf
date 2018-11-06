@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
   end
+  match '/login', to: 'sessions#create', via: [:post, :patch, :put]
   root to: 'tasks#index'
-  resources :tasks
+  resources :tasks do 
+    collection do 
+      get 'export'
+    end
+  end
 end
